@@ -41,24 +41,12 @@ export default {
     placeholder: {
       type: String,
     },
-    inputClass: {
-      type: Array,
-    },
     max: {
       type: Number,
       default: 10,
     },
     results: {
       type: Array,
-    },
-    resultsContainerClass: {
-      type: Array,
-    },
-    resultsItemClass: {
-      type: Array,
-    },
-    displayItem: {
-      type: Function,
     },
   },
   emits: ["input", "onSelect"],
