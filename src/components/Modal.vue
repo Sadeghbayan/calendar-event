@@ -56,7 +56,6 @@ export default defineComponent({
   emits: ["handleClose"],
   setup(props, context: SetupContext) {
     const closeModal = () => {
-      console.log("asdsa", context);
       context.emit("close");
     };
     return {
@@ -123,7 +122,7 @@ export default defineComponent({
   }
 
   &__box {
-    width: 400px;
+    width: 300px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -134,6 +133,10 @@ export default defineComponent({
     -webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.23, 1, 0.32, 1)
       backwards;
     animation: slide-in-bottom 0.5s cubic-bezier(0.23, 1, 0.32, 1) backwards;
+
+    @include mq(md) {
+      width: 400px;
+    }
   }
   &__body {
     padding: 15px;

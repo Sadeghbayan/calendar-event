@@ -116,4 +116,19 @@ export default defineComponent({
     height: 500px !important;
   }
 }
+
+.fc-header-toolbar {
+  flex-direction: column;
+  justify-content: center;
+  @include mq(md) {
+    flex-direction: row;
+  }
+
+  .fc-toolbar-chunk {
+    margin-bottom: 15px;
+    @include mq(md) {
+      margin-bottom: 0;
+    }
+  }
+}
 </style>

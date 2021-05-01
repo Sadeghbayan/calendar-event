@@ -44,7 +44,6 @@ export default defineComponent({
     };
 
     const result = computed(() => {
-      console.log(text.value);
       if (text.value) {
         const stationNames = getters.stationNames();
         return stationNames.filter((name: string) => {
@@ -55,7 +54,7 @@ export default defineComponent({
       }
     });
 
-    const handlSelectItem = (e: any) => {
+    const handlSelectItem = (e: unknown) => {
       //to display on calendar
       methods.showFilterStation(e);
     };
@@ -87,7 +86,10 @@ export default defineComponent({
 
   &__branding {
     display: flex;
-    flex: 2;
+    flex: 1;
+    @include mq(md) {
+      flex: 2;
+    }
   }
 
   &__search {
@@ -110,8 +112,10 @@ export default defineComponent({
     align-self: center;
     font-size: $font-size-small;
     font-weight: $font-weight-bold;
+    display: none;
     @include mq(md) {
       font-size: $font-size-default;
+      display: block;
     }
   }
   nav {
