@@ -1,18 +1,42 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+  <div class="home container">
+    <div class="wide">
+      <Calendar :events="allBookings" />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
-
+import { computed, defineComponent, ref } from "vue";
+import { useStore } from "@/store/store";
+import Calendar from "@/components/Calendar.vue";
+import useEvents from "@/hooks/useEvents";
+import { formatEvents } from "@/utils/helper";
 export default defineComponent({
   name: "Home",
   components: {
-    HelloWorld,
+    Calendar,
+  },
+  async setup() {
+    const bookings = ref([]);
+    const store = useStore();
+    const { methods, getters } = store;
+    const { events } = await useEvents();
+    const stataions = events.value;
+    bookings.value = formatEvents(stataions);
+    methods.saveEvents(events);
+    methods.saveBookings(bookings);
+
+    const allBookings = computed(() => {
+      return getters.bookings();
+    });
+
+    return {
+      allBookings,
+      getters,
+    };
   },
 });
 </script>
+
+<style lang="scss"></style>
